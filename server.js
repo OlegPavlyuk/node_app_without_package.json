@@ -72,10 +72,9 @@ server.listen(config.port, () =>
 // Define handlers
 const handlers = {};
 
-// Define test handler
-handlers.test = (data, callback) => {
-  // Callback http status code and payload object
-  callback(406, { name: 'test handler' });
+// Define ping handler
+handlers.ping = (data, callback) => {
+  callback(200);
 };
 
 // Define not found handler
@@ -85,5 +84,5 @@ handlers.notFound = (data, callback) => {
 
 // Define router
 const router = {
-  test: handlers.test
+  ping: handlers.ping
 };
