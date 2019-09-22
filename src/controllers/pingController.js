@@ -6,5 +6,5 @@ const pingController = async requestData => {
   return new ResponseData(200);
 };
 
-// Export Module
+// Export the module
 module.exports = pingController;

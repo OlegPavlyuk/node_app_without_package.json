@@ -6,5 +6,5 @@ const notFoundController = async requestData => {
   return new ResponseData(404);
 };
 
-// Export Module
+// Export the module
 module.exports = notFoundController;

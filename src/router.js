@@ -3,18 +3,22 @@
 // Dependencies
 const pingController = require('./controllers/pingController');
 const notFoundController = require('./controllers/notFoundController');
+const userController = require('./controllers/userController');
 
-// Define router
+// Container for the module
 const router = {};
 
 // Define routes
 router.routes = {
   'api/ping': {
     controller: pingController
+  },
+  'api/user': {
+    controller: userController
   }
 };
 
 router.notFound = notFoundController;
 
-// Export module
+// Export the module
 module.exports = router;

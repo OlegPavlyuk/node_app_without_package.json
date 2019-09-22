@@ -9,5 +9,5 @@ class RequestData {
   }
 }
 
-// Export Module
+// Export the module
 module.exports = RequestData;

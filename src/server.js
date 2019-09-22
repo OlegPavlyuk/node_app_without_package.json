@@ -6,6 +6,7 @@ const config = require('./config');
 const router = require('./router');
 const RequestData = require('./models/RequestData');
 const ResponseData = require('./models/ResponseData');
+const jsonStringToObject = require('./services/jsonStringToObject');
 
 const server = http.createServer((req, res) => {
   // Parse url from request object
@@ -30,6 +31,9 @@ const server = http.createServer((req, res) => {
   req.on('data', chunk => (payload += decoder.write(chunk)));
   req.on('end', () => {
     payload += decoder.end();
+
+    // Parse payload to object.
+    payload = jsonStringToObject(payload);
 
     // Choose the controller this request should go to, otherwise use router notFound
     let chosenController;

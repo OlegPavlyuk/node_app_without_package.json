@@ -4,13 +4,15 @@ const environments = {};
 // Create staging(default) environment
 environments.staging = {
   port: 3000,
-  envName: 'staging'
+  envName: 'staging',
+  hashingSecret: 'ThisIsASecret'
 };
 
 // Create production environment
 environments.production = {
   port: 5000,
-  envName: 'production'
+  envName: 'production',
+  hashingSecret: 'ThisIsAlsoASecret'
 };
 
 // Determine whether environment was passed as command-line argument

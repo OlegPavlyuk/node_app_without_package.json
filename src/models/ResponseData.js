@@ -22,5 +22,5 @@ class ResponseData {
   }
 }
 
-// Export module
+// Export the module
 module.exports = ResponseData;

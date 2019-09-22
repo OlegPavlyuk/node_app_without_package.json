@@ -3,18 +3,18 @@ const fsPromises = require('fs').promises;
 const path = require('path');
 
 // Container for the module
-const lib = {};
+const database = {};
 
 // Base directory of data folder
-lib.baseDir = path.join(__dirname, '/../.data/');
+database.baseDir = path.join(__dirname, '/../.data/');
 
 // Write data to a file
-lib.create = async (dir, file, data) => {
+database.create = async (dir, file, data) => {
   let filehandle = null;
   try {
     // Open the file for writing
     filehandle = await fsPromises.open(
-      `${lib.baseDir}${dir}/${file}.json`,
+      `${database.baseDir}${dir}/${file}.json`,
       'wx'
     );
 
@@ -34,11 +34,11 @@ lib.create = async (dir, file, data) => {
 };
 
 // Read data from a file
-lib.read = async (dir, file) => {
+database.read = async (dir, file) => {
   let data;
   try {
     data = await fsPromises.readFile(
-      `${lib.baseDir}${dir}/${file}.json`,
+      `${database.baseDir}${dir}/${file}.json`,
       'utf8'
     );
     console.log(data);
@@ -51,12 +51,12 @@ lib.read = async (dir, file) => {
 };
 
 // Update data in a file
-lib.update = async (dir, file, data) => {
+database.update = async (dir, file, data) => {
   let filehandle = null;
   try {
     // Open the file for writing
     filehandle = await fsPromises.open(
-      `${lib.baseDir}${dir}/${file}.json`,
+      `${database.baseDir}${dir}/${file}.json`,
       'r+'
     );
 
@@ -79,10 +79,10 @@ lib.update = async (dir, file, data) => {
 };
 
 // Delete file
-lib.delete = async (dir, file) => {
+database.delete = async (dir, file) => {
   // Unlink the file from file system
-  await fsPromises.unlink(`${lib.baseDir}${dir}/${file}.json`);
+  await fsPromises.unlink(`${database.baseDir}${dir}/${file}.json`);
 };
 
-// Export module
-module.exports = lib;
+// Export the module
+module.exports = database;
