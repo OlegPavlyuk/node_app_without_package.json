@@ -39,14 +39,14 @@ const server = http.createServer((req, res) => {
       chosenController = router.notFound;
     }
 
-    // Construct data object from the request
-    const requestData = {
-      trimmedPath: trimmedPath,
-      queryStringObject: queryStringObject,
-      method: method,
-      headers: headers,
-      payload: buffer
-    };
+    // Construct the data object to send to the handler.
+    const requestData = new RequestData({
+      trimmedPath,
+      queryStringObject,
+      method,
+      headers,
+      payload
+    });
 
     chosenController(requestData)
       .then(responseData => {
