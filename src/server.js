@@ -4,6 +4,7 @@ const url = require('url');
 const { StringDecoder } = require('string_decoder');
 const config = require('./config');
 const router = require('./router');
+const RequestData = require('./models/RequestData');
 const ResponseData = require('./models/ResponseData');
 
 const server = http.createServer((req, res) => {
@@ -25,10 +26,10 @@ const server = http.createServer((req, res) => {
 
   // Get payload if any
   const decoder = new StringDecoder('utf8');
-  let buffer = '';
-  req.on('data', chunk => (buffer += decoder.write(chunk)));
+  let payload = '';
+  req.on('data', chunk => (payload += decoder.write(chunk)));
   req.on('end', () => {
-    buffer += decoder.end();
+    payload += decoder.end();
 
     // Choose the controller this request should go to, otherwise use router notFound
     let chosenController;
