@@ -1,12 +1,13 @@
 // Dependencies
 const fsPromises = require('fs').promises;
 const path = require('path');
+const jsonStringToObject = require('../services/jsonStringToObject');
 
 // Container for the module
 const database = {};
 
 // Base directory of data folder
-database.baseDir = path.join(__dirname, '/../.data/');
+database.baseDir = path.join(__dirname, '/../../.data/');
 
 // Write data to a file
 database.create = async (dir, file, data) => {
@@ -41,7 +42,7 @@ database.read = async (dir, file) => {
       `${database.baseDir}${dir}/${file}.json`,
       'utf8'
     );
-    console.log(data);
+    data = jsonStringToObject(data);
   } catch (err) {
     console.error(`Can't read a file, ${err}`);
     data = null;

@@ -19,6 +19,18 @@ class ResponseData {
     this.contentTypeString =
       contentTypeMap[contentType] || contentTypeMap['json'];
     this.payload = payload;
+    this.payloadString = this.parsePayload(payload, contentType);
+  }
+
+  parsePayload(payload, contentType) {
+    // If content type is JSON and payload is an object we need to stringify it.
+    if (contentType === 'json') {
+      payload =
+        typeof payload === 'object' && payload ? JSON.stringify(payload) : '';
+    }
+
+    // Return content type as is unless it is undefined.
+    return typeof payload !== 'undefined' ? payload : '';
   }
 }
 

@@ -1,6 +1,8 @@
 // Dependencies
 const getUser = require('../requestHandlers/user/getUser');
 const postUser = require('../requestHandlers/user/postUser');
+const putUser = require('../requestHandlers/user/putUser');
+const deleteUser = require('../requestHandlers/user/deleteUser');
 
 const ResponseData = require('../models/ResponseData');
 
