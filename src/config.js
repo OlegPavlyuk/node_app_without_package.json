@@ -5,14 +5,16 @@ const environments = {};
 environments.staging = {
   port: 3000,
   envName: 'staging',
-  hashingSecret: 'ThisIsASecret'
+  hashingSecret: 'ThisIsASecret',
+  tokenLifetime: 1000 * 60 * 60
 };
 
 // Create production environment
 environments.production = {
   port: 5000,
   envName: 'production',
-  hashingSecret: 'ThisIsAlsoASecret'
+  hashingSecret: 'ThisIsAlsoASecret',
+  tokenLifetime: 1000 * 60 * 60
 };
 
 // Determine whether environment was passed as command-line argument
