@@ -6,7 +6,7 @@ const randomString = require('../services/randomString');
 
 // Constants
 const tokenIdLength = 20;
-const tokenLifeTime = config.tokenLifeTime;
+const tokenLifetime = config.tokenLifetime;
 
 // Class Token
 class Token {
@@ -15,7 +15,7 @@ class Token {
     this.id = randomString(tokenIdLength);
     this.phone = validator.parsePhone(phone);
     this.hashedPassword = passwordHash(validator.parseString(password));
-    this.expires = Date.now() + tokenLifeTime;
+    this.expires = Date.now() + tokenLifetime;
 
     return this;
   }
