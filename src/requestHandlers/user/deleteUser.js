@@ -13,8 +13,14 @@ const deleteUser = async requestData => {
     return new ResponseData(400, { error: 'Missing required fields' });
   }
 
-  // @@TODO
-  // authenticate user(verify token)
+  // Get the token from the headers.
+  const token = validator.parseString(requestData.headers.token);
+
+  // Verify that the given token is valid for the phone number.
+  const verifiedToken = await verifyUserToken(token, email);
+  if (!verifiedToken) {
+    return new ResponseData(403, { error: 'Token is invalid' });
+  }
 
   // Look up user
   const userData = await database.read('users', phone);
